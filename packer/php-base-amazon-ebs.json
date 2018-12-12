@@ -1,0 +1,37 @@
+{
+    "variables": {
+        "ubuntu-16-04-x64": "ami-f4f21593"
+    },
+    "builders": [
+        {
+            "name": "php-base",
+            "type": "amazon-ebs",
+            "profile": "packer",
+            "region": "eu-west-2",
+            "source_ami": "{{ user `ubuntu-16-04-x64` }}",
+            "instance_type": "t2.micro",
+            "ssh_username": "ubuntu",
+            "ami_name": "php-base",
+            "ami_description": "PHP Base",
+            "force_deregister": true,
+            "force_delete_snapshot": true,
+            "tags": {
+                "Name": "PHP Base",
+                "Role": "php-base"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "ansible/playbook.yml"
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "manifest",
+            "output": "manifest.json",
+            "strip_path": true
+        }
+    ]
+}

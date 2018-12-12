@@ -1,0 +1,8 @@
+- hosts: default
+  vars_files:
+    - vars.yml
+  become: yes
+  roles:
+    - geerlingguy.php-versions
+    - geerlingguy.php
+    - geerlingguy.composer

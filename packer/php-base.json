@@ -1,0 +1,23 @@
+{
+    "variables": {
+        "api_token": "{{ env `DO_TOKEN` }}"
+    },
+    "builders": [
+        {
+            "name": "php-base",
+            "type": "digitalocean",
+            "region": "lon1",
+            "image": "ubuntu-18-04-x64",
+            "size": "s-1vcpu-1gb",
+            "ssh_username": "root",
+            "api_token": "{{ user `api_token` }}",
+            "snapshot_name": "php-base"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "./ansible/playbook.yml"
+        }
+    ]
+}

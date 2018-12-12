@@ -1,0 +1,8 @@
+# Tell Ansible to use Python 3
+ansible_python_interpreter: /usr/bin/python3
+
+# PHP version
+php_version: '7.2'
+
+# PHP CLI only - no web server
+php_enable_webserver: false
